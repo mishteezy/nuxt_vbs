@@ -1,6 +1,6 @@
 <template>
     <div class="left__container flex justify-center items-center flex-col">
-        <slot></slot>
+        <NuxtPage />
     </div>
 </template>
 

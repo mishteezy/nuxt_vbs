@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useLogin } from './use/Login.ts'
+import { useLogin } from '../use/Login'
 
 const {
     usernameRef,

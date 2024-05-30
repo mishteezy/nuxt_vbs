@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useSignup } from './use/Signup.ts'
+import { useSignup } from '../use/Signup'
 
 const {
     userRef,
@@ -10,13 +10,13 @@ const {
     isFormValid
 } = useSignup()
 
-const store = useSignupStore();
-
 onBeforeRouteLeave((to, from, next) => {
     if (isFormValid() && to.path === '/') {
         const answer = confirm('Данные могут быть утеряны. Покинуть страницу?')
-        if (!answer) return false
+        next(answer)
+        return
     }
+    next()
 });
 </script>
 
@@ -45,7 +45,7 @@ onBeforeRouteLeave((to, from, next) => {
              v-model="confirmPasswordRef" />
 
     <button class="btn"
-            :disabled="!isFormValid"
+            :disabled="!isFormValid()"
             @click="signup">SIGN UP</button>
 
     <div class="no-account">You have account?

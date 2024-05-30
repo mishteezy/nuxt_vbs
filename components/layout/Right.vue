@@ -1,7 +1,7 @@
 <template>
     <div class="right__container flex justify-center items-center flex-col">
-        <SvgRightCircle1 />
-        <SvgRightCircle2 />
+        <SvgCircle1 />
+        <SvgCircle2 />
         <slot name="svg"></slot>
         <slot name="desc"></slot>
     </div>

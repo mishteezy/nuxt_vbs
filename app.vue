@@ -1,63 +1,26 @@
-<script lang="ts">
-import Login from './components/Login.vue';
-import OTP from './components/OTP.vue';
-import Signup from './components/Signup.vue';
-import LoginSVG from './components/svg/right/Login'
-import SignupSVG from './components/svg/right/Signup'
-import OTPSVG from './components/svg/right/OTP'
+<script lang="ts" setup>
+import { DescMapper } from './misc/descMapper'
+import SvgLogin from './components/svg/Login.vue'
+import SvgSignup from './components/svg/Login.vue'
+import SvgOTP from './components/svg/Login.vue'
 
-export default defineComponent({
-    data() {
-        return {
-            DescMapper: {
-                '/':
-                {
-                    desc1: 'Connect with any device.',
-                    desc2: 'Everything you need is an internet connection.'
-                },
-                '/signup':
-                {
-                    desc1: 'Join us!',
-                    desc2: 'Just go through the boring process of creating an account.'
-                },
-                '/otp':
-                {
-                    desc1: 'It\'s just OTP verification',
-                    desc2: 'You are one step away from recovering your password.'
-                }
-            }
-        }
-    },
-    computed: {
-        component() {
-            switch (this.$route.path) {
-                case '/':
-                    return Login
-                case '/signup':
-                    return Signup
-                case '/otp':
-                    return OTP
-            }
-        },
-        picture() {
-            switch (this.$route.path) {
-                case '/':
-                    return LoginSVG
-                case '/signup':
-                    return SignupSVG
-                case '/otp':
-                    return OTPSVG
-            }
-        }
+const route = useRoute()
+
+const picture = computed(() => {
+    switch (route.path) {
+        case '/':
+            return SvgLogin
+        case '/signup':
+            return SvgSignup
+        case '/otp':
+            return SvgOTP
     }
 })
 </script>
 
 <template>
     <div class="app__container grid grid-cols-2 self-stretch">
-        <layout-left>
-            <component :is='component'></component>
-        </layout-left>
+        <layout-left></layout-left>
         <layout-right>
             <template v-slot:svg>
                 <component :is='picture'></component>
