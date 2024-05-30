@@ -13,7 +13,7 @@ const {
 const store = useSignupStore();
 
 onBeforeRouteLeave((to, from, next) => {
-    if (isFormValid && to.path === '/') {
+    if (isFormValid() && to.path === '/') {
         const answer = confirm('Данные могут быть утеряны. Покинуть страницу?')
         if (!answer) return false
     }

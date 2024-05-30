@@ -8,16 +8,14 @@ export function useSignup() {
 
   const router = useRouter();
 
-  const isFormValid = computed(
-    () =>
-      userRef.value.length >= 2 &&
-      emailRef.value.length >= 2 &&
-      passwordRef.value.length >= 2 &&
-      confirmPasswordRef.value.length >= 2
-  );
+  const isFormValid = () =>
+    userRef.value.length >= 2 &&
+    emailRef.value.length >= 2 &&
+    passwordRef.value.length >= 2 &&
+    confirmPasswordRef.value.length >= 2;
 
   const signup = async () => {
-    if (!isFormValid) return;
+    if (!isFormValid()) return;
     store.set({
       username: userRef.value,
       email: emailRef.value,
